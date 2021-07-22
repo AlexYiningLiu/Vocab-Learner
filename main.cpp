@@ -26,28 +26,38 @@ int main()
             std::cout << "Total word count: " << num_words << std::endl;
         }
         else if (choice == 2) {
-            std::cout << "Enter query by word or index: ";
-            std::cin >> word;
-            if (std::isdigit(static_cast<unsigned char> (word[0]))) {
-                queryIndex = std::stoi(word);
-                pair = myDictionary.getDef(queryIndex);
-                word = pair[0];
-                def = pair[1];
+            while (true) {
+                std::cout << "Enter query by word or index, enter 0 to return: ";
+                std::cin >> word;
+                if (word == "0") {
+                    break; 
+                }
+                if (std::isdigit(static_cast<unsigned char> (word[0]))) {
+                    queryIndex = std::stoi(word);
+                    pair = myDictionary.getDef(queryIndex);
+                    word = pair[0];
+                    def = pair[1];
+                }
+                else {
+                    def = myDictionary.getDef(word);
+                }
+                std::cout << word << ": " << def << std::endl << std::endl;                
             }
-            else {
-                def = myDictionary.getDef(word);
-            }
-            std::cout << word << ": " << def << std::endl;
         }
         else if (choice == 3) {
-            std::cout << "Enter word: ";
-            std::cin >> word;
-            std::cout << "Word: " << word << std::endl;
-            std::cout << "Enter definition: ";
-            std::cin.ignore();
-            std::getline(std::cin, def);
-            std::cout << "Definition: " << def << std::endl;
-            myDictionary.writeFile(word, def);
+            while (true) {
+                std::cout << "Enter word, enter 0 to return: ";
+                std::cin >> word;
+                if (word == "0") {
+                    break; 
+                }
+                std::cout << "Word: " << word << std::endl;
+                std::cout << "Enter definition: ";
+                std::cin.ignore();
+                std::getline(std::cin, def);
+                std::cout << "Definition: " << def << std::endl;
+                myDictionary.writeFile(word, def);
+            }
         }
         else {
             std::cout << "Invalid entry" << std::endl;
