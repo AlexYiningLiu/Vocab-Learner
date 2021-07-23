@@ -29,17 +29,26 @@ def keys_exists(element, *keys):
 
 def main():
 
-    app_id = '2e8b977f'
-    app_key = 'cc344dbab6efbac80aa48a5c82c093e3'
+    #app_id = '2e8b977f'
+    #app_key = 'cc344dbab6efbac80aa48a5c82c093e3'
 
-    language = 'en'
-    word_id = 'prerogative'
+    #language = 'en'
+    #word_id = 'computer'
 
-    url = 'https://od-api.oxforddictionaries.com/api/v2/entries/' + language + '/' + word_id.lower() 
+    #url = 'https://od-api.oxforddictionaries.com/api/v2/entries/' + language + '/' + word_id.lower() 
 
-    r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key})
+    #r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key})
 
-    print(r.json()["results"][0]["lexicalEntries"][0]["entries"][0]["senses"][0]["definitions"][0])
+    #print(r.json()["results"][0]["lexicalEntries"][0]["entries"][0]["senses"][0]["definitions"][0])
 
+    port, ip = 54000, "127.0.0.1"
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind((ip, port))
+        s.listen()
+        print("start to listen")
+        connection, address = s.accept()
+        with connection:
+            print("Connected by:", address)
+            
 
 main()
