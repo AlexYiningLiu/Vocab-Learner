@@ -10,7 +10,9 @@ class RequesterSocket
 {
 public:
 	RequesterSocket(int port, std::string ipAddress);
+	~RequesterSocket() { closesocket(sock_); WSACleanup(); }
 	int connectToServer();
+	int queryWord(const std::string word, std::string &def);
 
 private:
 	int port_;

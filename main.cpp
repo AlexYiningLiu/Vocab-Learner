@@ -5,6 +5,14 @@
 #include "VocabDictionary.h"
 #include "RequesterSocket.h"
 
+//void startPythonServer()
+//{
+//    std::string filename = "../../scripts/oxford_server.py";
+//    std::string command = "python ";
+//    command += filename;
+//    system(command.c_str());
+//}
+
 int main()
 {
     bool loop = true;
@@ -12,11 +20,12 @@ int main()
     int queryIndex;
     int choice;
     int num_words;
+    int result; 
     std::vector <std::string> pair;
     VocabDictionary myDictionary("vocabulary.txt");
 
     RequesterSocket client(54000, "127.0.0.1");
-    client.connectToServer(); 
+    client.connectToServer();
 
     myDictionary.readFile();
     num_words = myDictionary.displayVocab();
@@ -64,11 +73,17 @@ int main()
                     break; 
                 }
                 std::cout << "Word: " << word << std::endl;
-                std::cout << "Enter definition: ";
-                std::cin.ignore();
-                std::getline(std::cin, def);
+                // Send word to server and wait for response 
+                result = client.queryWord(word, def);
                 std::cout << "Definition: " << def << std::endl;
-                myDictionary.writeFile(word, def);
+                if (result == 1)
+                {
+                    myDictionary.writeFile(word, def);
+                }
+                else
+                {
+                    std::cout << "Not saved" << std::endl;
+                }
             }
         }
         else {

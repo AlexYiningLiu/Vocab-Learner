@@ -65,3 +65,40 @@ int RequesterSocket::connectToServer()
 		return 1; 
 	}
 }
+
+int RequesterSocket::queryWord(const std::string word, std::string &def)
+{
+	char buf[4096];
+	int sendResult;
+	int bytesReceived;
+	if (word.size() > 0)
+	{
+		sendResult = send(sock_, word.c_str(), int(word.size()) + 1, 0);
+		if (sendResult != SOCKET_ERROR)
+		{
+			ZeroMemory(buf, 4096);
+			bytesReceived = recv(sock_, buf, 4096, 0);
+			if (bytesReceived > 0)
+			{
+				def = std::string(buf, 0, bytesReceived); 
+				std::cout << "SERVER> " << def << std::endl; 
+				return 1; 
+			}
+			else
+			{
+				std::cout << "Nothing received from server" << std::endl;
+				return 0; 
+			}
+		}
+		else
+		{
+			std::cout << "Send not successful, Err #" << WSAGetLastError() << std::endl;
+			return sendResult;
+		}
+	}
+	else
+	{
+		std::cout << "Word size must be > 0" << std::endl;
+		return SOCKET_ERROR; 
+	}
+}
