@@ -81,7 +81,11 @@ int RequesterSocket::queryWord(const std::string word, std::string &def)
 			if (bytesReceived > 0)
 			{
 				def = std::string(buf, 0, bytesReceived); 
-				std::cout << "SERVER> " << def << std::endl; 
+				//std::cout << "SERVER> " << def << std::endl; 
+				if (def == "None")
+				{
+					return 0;
+				}
 				return 1; 
 			}
 			else

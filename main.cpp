@@ -35,6 +35,13 @@ int main()
     {
         std::cout << "Enter 1 to display vocab list, enter 2 to query word, enter 3 to add new word: ";
         std::cin >> choice;
+        if (std::cin.fail())
+        {
+            std::cout << "Invalid entry" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(256, '\n');
+            continue; 
+        }
         if (choice == 1) 
         {
             num_words = myDictionary.displayVocab();

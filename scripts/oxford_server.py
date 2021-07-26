@@ -10,7 +10,11 @@ def requestDef(word_id):
     language = 'en'
     url = 'https://od-api.oxforddictionaries.com/api/v2/entries/' + language + '/' + word_id.lower() 
     r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key})
-    oxford_def = r.json()["results"][0]["lexicalEntries"][0]["entries"][0]["senses"][0]["definitions"][0]
+    try:
+        oxford_def = r.json()["results"][0]["lexicalEntries"][0]["entries"][0]["senses"][0]["definitions"][0]
+    except:
+        print("No definition returned from Oxford")
+        return "None"
     #print(oxford_def)
     return oxford_def
 
