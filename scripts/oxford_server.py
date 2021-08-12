@@ -18,7 +18,7 @@ def requestDef(word_id):
     #print(oxford_def)
     return oxford_def
 
-def main():
+if __name__ == "__main__":
     app_id = '2e8b977f'
     app_key = 'cc344dbab6efbac80aa48a5c82c093e3'
     language = 'en'
@@ -39,6 +39,6 @@ def main():
                     break
                 word_id = query.decode('utf-8')
                 word_id = word_id[:len(word_id)-1]
+                print("Query: ", word_id)
                 oxford_def = requestDef(word_id)                
                 connection.sendall(str.encode(oxford_def))
-main()

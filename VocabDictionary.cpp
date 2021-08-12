@@ -96,3 +96,22 @@ std::vector <std::string> VocabDictionary::getDef(int queryIndex)
 		return pair;
 	}
 }
+
+std::string VocabDictionary::getRandomWord()
+{
+	auto it = dictionary_.begin();
+	int random_index = rand() % dictionary_.size();
+	std::advance(it, random_index);
+	std::string selectedWord = it->first;
+	return selectedWord;
+}
+
+std::vector <std::string> VocabDictionary::getAllDefinitions()
+{
+	std::vector <std::string> allDefinitions;
+	for (std::unordered_map<std::string, std::string>::iterator it = dictionary_.begin(); it != dictionary_.end(); ++it)
+	{
+		allDefinitions.push_back(it->second);
+	}
+	return allDefinitions;
+}

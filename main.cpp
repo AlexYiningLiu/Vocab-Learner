@@ -12,8 +12,54 @@
 //    system(command.c_str());
 //}
 
+void quizRandomWord(VocabDictionary * myDictionary)
+{
+    static std::vector <std::string> quizzedWords;
+    static std::vector <std::string> allDefinitions;
+    std::string selectedRandomWord;
+    int userInput;
+    std::string answer;
+
+    allDefinitions = myDictionary->getAllDefinitions();
+    while (true)
+    {
+        selectedRandomWord = myDictionary->getRandomWord();
+        if (std::find(quizzedWords.begin(), quizzedWords.end(), selectedRandomWord) == quizzedWords.end())
+        {
+            quizzedWords.push_back(selectedRandomWord);
+            break;
+        }
+    }
+    answer = myDictionary->getDef(selectedRandomWord);
+    // Show the user all the available definitions 
+    std::cout << "Select definition for: " << selectedRandomWord << std::endl;
+    std::cout << "Available choices: " << std::endl;
+    for (int i = 0; i < allDefinitions.size(); i++)
+    {
+        std::cout << (i+1) << ":" << allDefinitions[i] << std::endl;
+    }
+    while (true)
+    {
+        std::cout << "Enter answer by index ";
+        std::cin >> userInput;
+        userInput -= 1;
+        if (allDefinitions[userInput] == answer)
+        {
+            std::cout << "Correct!" << std::endl;
+            std::cout << answer << std::endl;
+            break;
+        }
+        else
+        {
+            std::cout << "Incorrect, try again." << std::endl;
+        }
+    }
+}
+
 int main()
 {
+    srand((unsigned int)time(NULL));
+
     bool loop = true;
     std::string word, def;
     int queryIndex;
@@ -32,7 +78,7 @@ int main()
 
     while (loop) 
     {
-        std::cout << "Enter 1 to display vocab list, enter 2 to query word, enter 3 to add new word: ";
+        std::cout << "Enter 1 to display vocab list, enter 2 to query word, enter 3 to add new word, enter 4 to quiz random words: ";
         std::cin >> choice;
         if (std::cin.fail())
         {
@@ -91,6 +137,10 @@ int main()
                     std::cout << "Not saved" << std::endl;
                 }
             }
+        }
+        else if (choice == 4)
+        {
+            quizRandomWord(&myDictionary);
         }
         else {
             std::cout << "Invalid entry" << std::endl;

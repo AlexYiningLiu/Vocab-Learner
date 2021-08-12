@@ -14,8 +14,10 @@ public:
 	void writeFile(std::string wordIn, std::string defIn);
 	void readFile();
 	int displayVocab();
+	std::string getRandomWord();
 	std::string getDef(std::string word);
 	std::vector <std::string> getDef(int queryIndex);
+	std::vector <std::string> getAllDefinitions();
 
 private:
 	bool saveToDict(std::string wordIn, std::string defIn);
