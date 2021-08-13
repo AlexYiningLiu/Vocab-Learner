@@ -1,7 +1,8 @@
 # Vocab_Learner
-Save vocabularies into personal dictionary for learning. 
-Uses Oxford Dictionary APIs found at: https://developer.oxforddictionaries.com/
+Save vocabularies into personal dictionary for learning.\
+You can quiz yourself on the words you've saved as well.
 
+Uses Oxford Dictionary APIs found at: https://developer.oxforddictionaries.com \
 Get unique API ID and key from above link and replace the ones in this repo.
 
 **To Run:**
