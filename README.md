@@ -3,7 +3,7 @@ Save vocabularies into personal dictionary for learning.\
 You can quiz yourself on the words you've saved as well.
 
 Uses Oxford Dictionary APIs found at: https://developer.oxforddictionaries.com \
-Get unique API ID and key from above link and replace the ones in this repo.
+Get unique API ID and key from above link and replace the ones in oxford.py.
 
 **To Run:**
 1. Compile C++ files to executable.
