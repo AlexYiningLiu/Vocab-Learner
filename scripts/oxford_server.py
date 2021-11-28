@@ -19,10 +19,12 @@ def requestDef(word_id):
     return oxford_def
 
 if __name__ == "__main__":
-    app_id = '2e8b977f'
-    app_key = 'cc344dbab6efbac80aa48a5c82c093e3'
-    language = 'en'
+    with open('api_info.json') as json_file:
+        data = json.load(json_file)
 
+    app_id = data['app_id']
+    app_key = data['app_key']
+    language = 'en'
 
     port, ip = 54000, "127.0.0.1"
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
