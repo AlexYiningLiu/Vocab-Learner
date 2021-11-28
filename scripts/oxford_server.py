@@ -5,8 +5,8 @@ import sys
 
 def requestDef(word_id):
     #print(word_id)
-    app_id = '2e8b977f'
-    app_key = 'cc344dbab6efbac80aa48a5c82c093e3'
+    app_id = ''
+    app_key = ''
     language = 'en'
     url = 'https://od-api.oxforddictionaries.com/api/v2/entries/' + language + '/' + word_id.lower() 
     r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key})
