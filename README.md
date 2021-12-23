@@ -1,4 +1,4 @@
-# Vocab_Learner
+# Vocab-Learner
 Save vocabularies into personal dictionary for learning.\
 You can quiz yourself on the words you've saved as well.
 
